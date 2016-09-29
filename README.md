@@ -9,7 +9,7 @@ Rebuild is a command line tool that builds and (re)starts your web application e
 ## Usage
 
     cd /path/to/myapp
-    ./rebuild
+    rebuild
 
 Rebuild will watch for file events, and every time you create/modifiy/delete a file it will build and restart the application.
 If `go build` returns an error, it will log it in the tmp folder.
@@ -37,7 +37,3 @@ Here is a sample config file with the default settings:
 ## Thanks to
 
 * [Andrea Franz](http://gravityblast.com) - Original fresh project
-
-
-
-

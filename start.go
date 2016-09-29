@@ -100,7 +100,7 @@ func setEnvVars() {
 	}
 }
 
-// Watches for file changes in the root directory.
+// Start watches for file changes in the root directory.
 // After each file system event it builds and (re)starts the application.
 func Start() {
 	initSettings()

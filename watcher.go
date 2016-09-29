@@ -2,8 +2,9 @@ package main
 
 import (
 	"os"
-	"strings"
 	"path/filepath"
+	"strings"
+
 	"github.com/howeyc/fsnotify"
 )
 
@@ -21,8 +22,8 @@ func watchFolder(path string) {
 					watcherLog("sending event %s", ev)
 					startChannel <- ev.String()
 				}
-			case err := <-watcher.Error:
-				watcherLog("error: %s", err)
+			case watcherErr := <-watcher.Error:
+				watcherLog("error: %s", watcherErr)
 			}
 		}
 	}()
@@ -36,7 +37,7 @@ func watchFolder(path string) {
 
 func watch() {
 	paths := watchPaths()
-	for i, _ := range paths {
+	for i := range paths {
 		wp := strings.TrimSpace(paths[i])
 
 		_, err := os.Stat(wp)
@@ -52,6 +53,10 @@ func watch() {
 					return filepath.SkipDir
 				}
 
+				if strings.Contains(path, "vendor/") {
+					return filepath.SkipDir
+				}
+
 				watchFolder(path)
 			}
 
@@ -59,4 +64,3 @@ func watch() {
 		})
 	}
 }
-

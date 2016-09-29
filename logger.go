@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/mattn/go-colorable"
 	"log"
 	"time"
+
+	"github.com/mattn/go-colorable"
 )
 
 type logFunc func(string, ...interface{})
