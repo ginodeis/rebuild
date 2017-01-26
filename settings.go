@@ -26,6 +26,7 @@ var settings = map[string]string{
 	"build_log":         "runner-build-errors.log",
 	"valid_ext":         ".go, .tpl, .tmpl, .html",
 	"build_delay":       "600",
+	"runner_args":       "",
 	"colors":            "1",
 	"log_color_main":    "cyan",
 	"log_color_build":   "yellow",
@@ -122,12 +123,17 @@ func tmpPath() string {
 func buildName() string {
 	return settings["build_name"]
 }
+
 func buildPath() string {
 	p := filepath.Join(tmpPath(), buildName())
 	if runtime.GOOS == "windows" && filepath.Ext(p) != ".exe" {
 		p += ".exe"
 	}
 	return p
+}
+
+func runnerArgs() string {
+	return settings["runner_args"]
 }
 
 func buildErrorsFileName() string {
